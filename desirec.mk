@@ -106,3 +106,14 @@ $(call inherit-product, build/target/product/full.mk)
 
 PRODUCT_NAME := cyanogen_desirec
 PRODUCT_DEVICE := desirec
+#
+# Set ro.modversion
+#
+ifdef CYANOGEN_NIGHTLY
+    PRODUCT_PROPERTY_OVERRIDES += \
+        ro.modversion=CerisedFroYo-$(shell date +%m%d%Y)-NIGHTLY
+else
+    PRODUCT_PROPERTY_OVERRIDES += \
+        ro.modversion=CerisedFroYo-v3
+endif
+
