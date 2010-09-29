@@ -68,6 +68,14 @@ PRODUCT_COPY_FILES += \
     device/htc/desirec/lights.sh:system/etc/lights.sh
 
 PRODUCT_PACKAGES += \
+    librpc \
+    DeskClock \
+    DownloadProvider \
+    GlobalSearch \
+    Launcher \
+    LiveWallpapers \
+    SoundRecorder \
+    VoiceDialer \
     librs_jni \
     sensors.desirec \
     lights.desirec
@@ -96,5 +104,5 @@ $(call inherit-product, device/htc/common/common.mk)
 $(call inherit-product, build/target/product/full.mk)
 
 
-PRODUCT_NAME := generic_desirec
+PRODUCT_NAME := cyanogen_desirec
 PRODUCT_DEVICE := desirec
