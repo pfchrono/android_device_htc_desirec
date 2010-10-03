@@ -34,5 +34,5 @@ endif
 # Copy desirec specific prebuilt files
 #
 PRODUCT_COPY_FILES +=  \
-    device/htc/desirec/media/bootanimation.zip:system/media/bootanimation.zip
+    device/htc/desirec/system/media/bootanimation.zip:system/media/bootanimation.zip
 
