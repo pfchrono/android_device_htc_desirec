@@ -47,9 +47,15 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	dalvik.vm.lockprof.threshold=500 \
 	dalvik.vm.dexopt-flags=m=y \
         ro.ril.htcmaskw1.bitmask = 4294967295 \
-        ro.ril.htcmaskw1 = 268449905
+        ro.ril.htcmaskw1 = 268449905 \
+	ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
+	ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
+	ro.com.android.wifi-watchlist=GoogleGuest \
+	ro.setupwizard.enterprise_mode=1 \
+	ro.com.android.dateformat=MM-dd-yyyy \
+	ro.com.android.dataroaming=false
 
-DEVICE_PACKAGE_OVERLAYS += device/htc/desirec/overlay
+DEVICE_PACKAGE_OVERLAYS := device/htc/desirec/overlay
 
 PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
@@ -61,6 +67,12 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml \
     frameworks/base/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml
 
+# Keylayouts
+PRODUCT_COPY_FILES += \
+    device/htc/desirec/desirec-keypad.kl:system/usr/keylayout/desirec-keypad.kl \
+    device/htc/desirec/desirec-keypad.kcm.bin:system/usr/keychars/desirec-keypad.kcm.bin \
+    device/htc/desirec/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl
+
 # media config xml file
 PRODUCT_COPY_FILES += \
     device/htc/desirec/media_profiles.xml:system/etc/media_profiles.xml \
@@ -68,46 +80,41 @@ PRODUCT_COPY_FILES += \
     device/htc/desirec/tun.ko:system/lib/modules/tun.ko \
     device/htc/desirec/lights.sh:system/etc/lights.sh
 
-PRODUCT_PACKAGES += \
-    librpc \
-    librs_jni \
-    sensors.desirec \
-    lights.desirec
-
-# Keylayouts
-PRODUCT_COPY_FILES += \
-    device/htc/desirec/desirec-keypad.kl:system/usr/keylayout/desirec-keypad.kl \
-    device/htc/desirec/desirec-keypad.kcm.bin:system/usr/keychars/desirec-keypad.kcm.bin \
-    device/htc/desirec/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl
-
-# Passion uses high-density artwork where available
-PRODUCT_LOCALES += mdpi
-
 PRODUCT_COPY_FILES += \
     device/htc/desirec/vold.fstab:system/etc/vold.fstab \
     device/htc/desirec/gps.conf:system/etc/gps.conf \
     device/htc/desirec/apns-conf.xml:system/etc/apns-conf.xml 
 
+PRODUCT_PACKAGES := \
+    librs_jni \
+    sensors.desirec \
+    lights.desirec
 
+# Desirec uses medium-density artwork where available
+PRODUCT_LOCALES := en_US en_GB fr_FR it_IT de_DE es_ES mdpi
 
 $(call inherit-product-if-exists, vendor/htc/desirec/desirec-vendor.mk)
 
 # stuff common to all HTC phones
 $(call inherit-product, device/htc/common/common.mk)
 
-$(call inherit-product, build/target/product/full2.mk)
+$(call inherit-product, device/htc/desirec/desirec-full.mk)
 
 
-PRODUCT_NAME := cyanogen_desirec
+PRODUCT_NAME := desirec_froyo
 PRODUCT_DEVICE := desirec
+PRODUCT_BRAND := verizon
+PRODUCT_MODEL := Droid Eris
+PRODUCT_MANUFACTURER := HTC
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_ID=FRG83 BUILD_DISPLAY_ID=FRG83 BUILD_FINGERPRINT=google/passion/passion/mahimahi:2.2.1/FRG83/60505:user/release-keys PRIVATE_BUILD_DESC="passion-user 2.2.1 FRG83 60505 release-keys"
+
 #
 # Set ro.modversion
 #
 ifdef CYANOGEN_NIGHTLY
     PRODUCT_PROPERTY_OVERRIDES += \
-        ro.modversion=CerisedFroYo-$(shell date +%m%d%Y)-NIGHTLY
+        ro.modversion=CerisedFroYo-v5
 else
     PRODUCT_PROPERTY_OVERRIDES += \
-        ro.modversion=CerisedFroYo-v3
+        ro.modversion=CerisedFroYo-$(shell date +%m%d%Y)-NIGHTLY
 endif
-

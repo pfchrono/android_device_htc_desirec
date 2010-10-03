@@ -13,21 +13,19 @@
 # limitations under the License.
 
 
-ifneq ($(TARGET_SIMULATOR),true)
-ifeq ($(TARGET_ARCH),arm)
-
 LOCAL_PATH := $(call my-dir)
+
+ifneq ($(TARGET_SIMULATOR),true)
+
+# HAL module implemenation, not prelinked and stored in
+# hw/<SENSORS_HARDWARE_MODULE_ID>.<ro.product.board>.so
 include $(CLEAR_VARS)
+LOCAL_PRELINK_MODULE := false
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
+LOCAL_SHARED_LIBRARIES := liblog libcutils
+LOCAL_SRC_FILES := sensors.c
+LOCAL_MODULE := sensors.desirec
+include $(BUILD_SHARED_LIBRARY)
 
-LOCAL_MODULE_TAGS := eng
-
-LOCAL_C_INCLUDES += bootable/recovery
-LOCAL_SRC_FILES := recovery_ui.c
-
-# should match TARGET_RECOVERY_UI_LIB should be set in BoardConfig.mk
-LOCAL_MODULE := librecovery_ui_desirec
-
-include $(BUILD_STATIC_LIBRARY)
-
-endif   # TARGET_ARCH == arm
-endif   # !TARGET_SIMULATOR
+endif # !TARGET_SIMULATOR

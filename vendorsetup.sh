@@ -20,4 +20,5 @@
 # In particular, you can add lunch options with the add_lunch_combo
 # function: add_lunch_combo generic-eng
 
+add_lunch_combo desirec_froyo-eng
 add_lunch_combo cyanogen_desirec-eng
