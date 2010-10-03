@@ -47,13 +47,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	dalvik.vm.lockprof.threshold=500 \
 	dalvik.vm.dexopt-flags=m=y \
         ro.ril.htcmaskw1.bitmask = 4294967295 \
-        ro.ril.htcmaskw1 = 268449905 \
-	ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
-	ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
-	ro.com.android.wifi-watchlist=GoogleGuest \
-	ro.setupwizard.enterprise_mode=1 \
-	ro.com.android.dateformat=MM-dd-yyyy \
-	ro.com.android.dataroaming=false
+        ro.ril.htcmaskw1 = 268449905
 
 DEVICE_PACKAGE_OVERLAYS := device/htc/desirec/overlay
 
@@ -107,14 +101,3 @@ PRODUCT_BRAND := verizon
 PRODUCT_MODEL := Droid Eris
 PRODUCT_MANUFACTURER := HTC
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_ID=FRG83 BUILD_DISPLAY_ID=FRG83 BUILD_FINGERPRINT=google/passion/passion/mahimahi:2.2.1/FRG83/60505:user/release-keys PRIVATE_BUILD_DESC="passion-user 2.2.1 FRG83 60505 release-keys"
-
-#
-# Set ro.modversion
-#
-ifdef CYANOGEN_NIGHTLY
-    PRODUCT_PROPERTY_OVERRIDES += \
-        ro.modversion=CerisedFroYo-v5
-else
-    PRODUCT_PROPERTY_OVERRIDES += \
-        ro.modversion=CerisedFroYo-$(shell date +%m%d%Y)-NIGHTLY
-endif
