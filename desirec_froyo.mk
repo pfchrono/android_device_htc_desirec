@@ -101,3 +101,17 @@ PRODUCT_BRAND := verizon
 PRODUCT_MODEL := Droid Eris
 PRODUCT_MANUFACTURER := HTC
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_ID=FRG83 BUILD_DISPLAY_ID=FRG83 BUILD_FINGERPRINT=google/passion/passion/mahimahi:2.2.1/FRG83/60505:user/release-keys PRIVATE_BUILD_DESC="passion-user 2.2.1 FRG83 60505 release-keys"
+
+PRODUCT_PACKAGES += \
+    Launcher2
+
+# Set ro.modversion
+#
+ifdef CYANOGEN_NIGHTLY
+    PRODUCT_PROPERTY_OVERRIDES += \
+        ro.modversion=CerisedFroYo-$(shell date +%m%d%Y)-NIGHTLY
+else
+    PRODUCT_PROPERTY_OVERRIDES += \
+        ro.modversion=CerisedFroYo-aosp
+endif
+
