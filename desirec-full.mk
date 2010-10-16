@@ -20,7 +20,8 @@
 # in inherited configurations.
 
 PRODUCT_PACKAGES := \
-    VoiceDialer
+    VoiceDialer \
+    ADWLauncher
 
 # Additional settings used in all AOSP builds
 PRODUCT_PROPERTY_OVERRIDES := \
