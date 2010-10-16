@@ -112,6 +112,6 @@ ifdef CYANOGEN_NIGHTLY
         ro.modversion=CerisedFroYo-$(shell date +%m%d%Y)-NIGHTLY
 else
     PRODUCT_PROPERTY_OVERRIDES += \
-        ro.modversion=CerisedFroYo-aosp
+        ro.modversion=CerisedFroYo-v6
 endif
 
